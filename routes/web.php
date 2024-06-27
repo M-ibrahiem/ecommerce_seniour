@@ -22,10 +22,10 @@ Route::group(
     ], function(){
 
         Route::get('/', function () {
-            return view('welcome');
+            return view('front.index');
         });
         Route::get('/dashboard', function () {
-            return view('dashboard');
+            return view('dash.index');
         })->middleware(['auth', 'verified'])->name('dashboard');
 
 
