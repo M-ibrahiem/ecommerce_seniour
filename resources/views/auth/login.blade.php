@@ -19,18 +19,18 @@
                     @csrf
 				<div class="login__field">
 					<i class="login__icon fas fa-user"></i>
-					<input type="text" name="uspw" class="login__input" placeholder="User name / Email">
-                    @error('uspw')
+					<input type="text" name="unpw" class="login__input" placeholder="User name / Email">
+                </div>
+                    @error('unpw')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-				</div>
 				<div class="login__field">
 					<i class="login__icon fas fa-lock"></i>
 					<input type="password" name="password" class="login__input" placeholder="Password">
+                </div>
                     @error('password')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-				</div>
 				<button class="button login__submit">
 					<span class="button__text">Log In Now</span>
 					<i class="button__icon fas fa-chevron-right"></i>
