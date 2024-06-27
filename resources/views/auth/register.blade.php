@@ -1,52 +1,77 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+<!DOCTYPE html>
+<html lang="en">
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'>
+    <link rel="stylesheet" href="{{ asset('reg-login/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                <form class="login" method="POST" action="{{ route('register') }}">
+                    @csrf
+                    <!-- Name -->
+                    <div class="login__field">
+                        <label for="name" class="login__label">{{ __('Name') }}</label>
+                        <i class="login__icon fas fa-user"></i>
+                        <input id="name" class="login__input" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name">
+                        @error('name')
+                            <span class="error">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <!-- Email Address -->
+                    <div class="login__field">
+                        <label for="email" class="login__label">{{ __('Email') }}</label>
+                        <i class="login__icon fas fa-envelope"></i>
+                        <input id="email" class="login__input" type="email" name="email" value="{{ old('email') }}" required autocomplete="username">
+                        @error('email')
+                            <span class="error">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="login__field">
+                        <label for="password" class="login__label">{{ __('Password') }}</label>
+                        <i class="login__icon fas fa-lock"></i>
+                        <input id="password" class="login__input" type="password" name="password" required autocomplete="new-password">
+                        @error('password')
+                            <span class="error">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="login__field">
+                        <label for="password_confirmation" class="login__label">{{ __('Confirm Password') }}</label>
+                        <i class="login__icon fas fa-lock"></i>
+                        <input id="password_confirmation" class="login__input" type="password" name="password_confirmation" required autocomplete="new-password">
+                        @error('password_confirmation')
+                            <span class="error">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="flex items-center justify-end mt-4">
+                        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            href="{{ route('login') }}">
+                            {{ __('Already registered?') }}
+                        </a>
+
+                        <button type="submit" class="button login__submit">
+                            <span class="button__text">{{ __('Register') }}</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape4"></span>
+                <span class="screen__background__shape screen__background__shape3"></span>
+                <span class="screen__background__shape screen__background__shape2"></span>
+                <span class="screen__background__shape screen__background__shape1"></span>
+            </div>
         </div>
+    </div>
+</body>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+</html>
