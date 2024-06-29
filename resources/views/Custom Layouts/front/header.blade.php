@@ -181,9 +181,14 @@
                                     </div>
                                     <div class="onhover-div profile-dropdown">
                                         @if (Route::has('login'))
-                                        
+
                                         @auth
                                         <ul>
+                                            @if(Auth::user()->role == 'super_admin' || Auth::user()->role == 'admin')
+                                            <li>
+                                                <a href="{{ route('dashboard.main') }}">Dashboard</a>
+                                            </li>
+                                            @endif
                                             <li>
                                                 <form method="POST" action="{{ route('logout') }}">
                                                     @csrf
