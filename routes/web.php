@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dash\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -34,6 +35,9 @@ Route::group(
             Route::get('/', function () {
                 return view('dash.index');
             })->name('main');
+            Route::resources([
+                'users' => UserController::class,
+            ]);
         });
 
         Route::middleware('auth')->group(function () {

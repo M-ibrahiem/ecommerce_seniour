@@ -109,7 +109,7 @@ License: You must have a valid license purchased only from templatemonster to le
                                 </div>
                             </div>
                             <a class="dropdown-item" href="profile.html">Profile</a>
-                            <a class="dropdown-item" href="invoice.html">Invoice</a>
+                            <a class="dropdown-item" href="{{route('dashboard.users.index')}}">Users</a>
                             <a class="dropdown-item" href="gallery.html">Gallery</a>
                             <a class="dropdown-item" href="activity.html">Activity</a>
                             <a class="dropdown-item" href="faq.html">Faq</a>
@@ -461,3 +461,24 @@ License: You must have a valid license purchased only from templatemonster to le
             <img class="d-none" src="{{ asset('dash/dist/img/logo-dark.png') }}" alt="brand" />
         </div>
         <!-- /Setting Panel -->
+     <!-- Main Content -->
+     <div class="hk-pg-wrapper">
+        <!-- Container -->
+        <div class="container mt-xl-50 mt-sm-30 mt-15">
+            <!-- Title -->
+            <div class="hk-pg-header">
+                <div>
+                    <h2 class="hk-pg-title font-weight-600 mb-10">@yield('page_title')</h2>
+                    <p>Earnings from subscriptions that stared in the period 1 - 31 December 2018<i class="ion ion-md-help-circle-outline ml-5" data-toggle="tooltip" data-placement="top" title="Need help about earning stats"></i></p>
+                </div>
+                <div class="d-flex">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" class="btn btn-outline-primary active">today</button>
+                        <button type="button" class="btn btn-outline-primary">week</button>
+                        <button type="button" class="btn btn-outline-primary">month</button>
+                        <button type="button" class="btn btn-outline-primary">quarter</button>
+                        <button type="button" class="btn btn-outline-primary">year</button>
+                    </div>
+                </div>
+            </div>
+            <!-- /Title -->
