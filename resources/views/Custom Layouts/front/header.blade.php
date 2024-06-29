@@ -52,7 +52,7 @@
 
 </head>
 
-<body class="theme-color4 light ltr">
+<body class="theme-color4 light ltr" dir="{{ App::getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
     <style>
         header .profile-dropdown ul li {
             display: block;
@@ -136,18 +136,29 @@
                                                     </span>
                                                 </div>
                                             </li>
-                                            <li><a href="index.htm" class="nav-link menu-title">Home</a></li>
-                                            <li><a href="shop.html" class="nav-link menu-title">Shop</a></li>
-                                            <li><a href="cart/list.html" class="nav-link menu-title">Cart</a></li>
-                                            <li><a href="about-us.html" class="nav-link menu-title">About Us</a></li>
-                                            <li><a href="contact-us.html" class="nav-link menu-title">Contact Us</a>
+                                            <li><a href="index.htm" class="nav-link menu-title">{{ __('main.Home') }}</a></li>
+                                            <li><a href="shop.html" class="nav-link menu-title">{{ trans('main.Shop') }}</a></li>
+                                            <li><a href="cart/list.html" class="nav-link menu-title">@lang('main.Cart')</a></li>
+                                            <li><a href="about-us.html" class="nav-link menu-title">{{ __('ABOUT US') }}</a></li>
+                                            <li><a href="contact-us.html" class="nav-link menu-title">{{ Lang::get('main.Contact Us') }}</a>
                                             </li>
-                                            <li><a href="blog.html" class="nav-link menu-title">Blog</a></li>
+                                            <li><a href="blog.html" class="nav-link menu-title">{{ __('BLOG') }}</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </nav>
                             <div class="menu-right">
+                                <div class="">
+                                    <ul>
+                                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                            <li>
+                                                <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                                    {{ $properties['native'] }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                                 <ul>
                                     <li>
                                         <div class="search-box theme-bg-color">
@@ -178,7 +189,7 @@
                                         <div class="cart-media name-usr">
                                             <i data-feather="user"></i>
                                         </div>
-                                        
+
                                         <div class="onhover-div profile-dropdown">
                                             <ul>
                                                 <li>
@@ -190,6 +201,7 @@
 
                                             </ul>
                                         </div>
+
                                     </li>
                                 </ul>
                             </div>
