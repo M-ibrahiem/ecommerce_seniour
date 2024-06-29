@@ -178,13 +178,14 @@
                                         <div class="cart-media name-usr">
                                             <i data-feather="user"></i>
                                         </div>
+                                        
                                         <div class="onhover-div profile-dropdown">
                                             <ul>
                                                 <li>
-                                                    <a href="login.html" class="d-block">Login</a>
+                                                    <a href="{{ route('login') }}" class="d-block">Login</a>
                                                 </li>
                                                 <li>
-                                                    <a href="register.html" class="d-block">Register</a>
+                                                    <a href="{{ route('register') }}" class="d-block">Register</a>
                                                 </li>
 
                                             </ul>
