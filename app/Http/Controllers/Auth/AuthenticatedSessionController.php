@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -28,12 +29,25 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        if (Auth::user()->role == 'normal') {
-            return redirect()->intended(RouteServiceProvider::HOME);
+
+
+        // Check if the user has the 'user' role
+        if (Auth::check() && Auth::user()->hasRole('user')) {
+            return redirect(RouteServiceProvider::HOME);
         } else {
             return redirect('/dashboard');
         }
-    }
+
+        // Fallback if no condition is met
+        // return redirect('/');
+
+    //     if (Auth::user()->role == 'normal') {
+    //         return redirect()->intended(RouteServiceProvider::HOME);
+    //     } else {
+    //         return redirect('/dashboard');
+    //     }
+
+     }
 
     /**
      * Destroy an authenticated session.
