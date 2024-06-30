@@ -45,7 +45,7 @@ License: You must have a valid license purchased only from templatemonster to le
             <a class="navbar-toggle-btn nav-link-hover navbar-toggler" href="javascript:void(0);" data-toggle="collapse"
                 data-target="#navbarCollapseAlt" aria-controls="navbarCollapseAlt" aria-expanded="false"
                 aria-label="Toggle navigation"><span class="feather-icon"><i data-feather="menu"></i></span></a>
-            <a class="navbar-brand" href="dashboard1.html">
+            <a class="navbar-brand" href="{{ route('dashboard.main') }}">
                 <img class="brand-img d-inline-block align-top" src="{{ asset('dash/dist/img/logo-light.png') }}"
                     alt="brand" />
             </a>
