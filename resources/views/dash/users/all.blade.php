@@ -7,8 +7,8 @@
         <div class="col-xl-12">
             <section class="hk-sec-wrapper">
                 <h5 class="hk-sec-title">Bordered Table</h5>
-                <p class="mb-40">Add class <code>.table-bordered</code> in table tag for borders on all sides of the table
-                    and cells.</p>
+                <p class="mb-40">Add class <code>.table-bordered</code> in table tag for borders on all sides of the tableand cells.</p>
+                <a  class="btn btn-primary" href="{{ route('dashboard.users.create') }}">ADD USER</a>
                 <div class="row">
                     <div class="col-sm">
                         <div class="table-wrap">
@@ -52,9 +52,9 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-
                                     </tbody>
                                 </table>
+                                {{ $data->links('pagination::bootstrap-4') }}
                             </div>
                         </div>
                     </div>
