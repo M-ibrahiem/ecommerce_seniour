@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dash\CategoryController;
 use App\Http\Controllers\Dash\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,7 @@ Route::group(
             })->name('main');
             Route::resources([
                 'users' => UserController::class,
+                'categories' => CategoryController::class,
             ]);
         });
 

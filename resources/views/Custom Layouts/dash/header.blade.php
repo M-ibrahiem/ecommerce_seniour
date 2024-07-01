@@ -110,7 +110,7 @@ License: You must have a valid license purchased only from templatemonster to le
                             </div>
                             <a class="dropdown-item" href="profile.html">Profile</a>
                             <a class="dropdown-item" href="{{route('dashboard.users.index')}}">Users</a>
-                            <a class="dropdown-item" href="gallery.html">Gallery</a>
+                            <a class="dropdown-item" href="{{route('dashboard.categories.index')}}">Categories</a>
                             <a class="dropdown-item" href="activity.html">Activity</a>
                             <a class="dropdown-item" href="faq.html">Faq</a>
                         </div>

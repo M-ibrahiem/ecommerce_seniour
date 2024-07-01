@@ -31,7 +31,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('dash.usrs.add', compact('roles'));
+        return view('dash.users.add', compact('roles'));
     }
 
     /**
@@ -70,7 +70,6 @@ class UserController extends Controller
     {
         $roles = Role::all();
         return view('dash.users.edit', compact('user', 'roles'));
-
     }
 
     /**
@@ -101,23 +100,21 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
-{
-    // Check if the user exists
-    if ($user) {
-        // Prevent deletion of admin
-        if (User::whereHasRole('admin')) {
-            return redirect()->route('dashboard.users.index')->with('error', 'Cannot delete an admin.');
-        }elseif($user->hasRole('super_admin')){
 
-        // Allow deletion of other roles
-        $user->delete();
-        return redirect()->route('dashboard.users.index')->with('success', 'User deleted successfully.');
-    } else {
-        return redirect()->route('dashboard.users.index')->with('error', 'User not found.');
+    public function destroy(User $user)
+    {
+        // Check if the user exists
+        if ($user) {
+            // Prevent deletion of admin
+            if ($user->hasRole('admin')) {
+                return redirect()->route('dashboard.users.index')->with('error', 'Cannot delete an admin.');
+            }
+
+            // Allow deletion of other roles
+            $user->delete();
+            return redirect()->route('dashboard.users.index')->with('success', 'User deleted successfully.');
+        } else {
+            return redirect()->route('dashboard.users.index')->with('error', 'User not found.');
+        }
     }
 }
-}
-
-}
-

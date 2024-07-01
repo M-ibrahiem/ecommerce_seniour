@@ -1,6 +1,6 @@
 @extends('Custom Layouts.dash.app')
 
-@section('page_title', 'Main Dashboard')
+@section('page_title', 'All Categories')
 @section('content')
 
     <div class="row">
@@ -8,7 +8,7 @@
             <section class="hk-sec-wrapper">
                 <h5 class="hk-sec-title">Bordered Table</h5>
                 <p class="mb-40">Add class <code>.table-bordered</code> in table tag for borders on all sides of the table and cells.</p>
-                <a class="btn btn-primary" href="{{ route('dashboard.users.create') }}">ADD USER</a>
+                <a class="btn btn-primary" href="{{ route('dashboard.categories.create') }}">ADD Categorey</a>
                 <div class="row">
                     <div class="col-sm">
                         @if (session('success'))
@@ -28,8 +28,8 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Role</th>
+                                            <th>Sub Title</th>
+                                            <th>Image</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -37,28 +37,20 @@
                                         @php
                                         $serial = 1;
                                     @endphp
-                                    @foreach ($data as $user)
+                                    @foreach ($data as $category)
                                         <tr>
                                             <td>{{ $serial++ }}</td>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->email }}</td>
+                                                <td>{{ $category->name }}</td>
+                                                <td>{{ $category->sub_title }}</td>
+                                                <td> <img src="" alt=""></td>
                                                 <td>
-                                                    @if ($user->hasRole(['user', 'admin', 'super_admin']))
-                                                        @foreach ($user->roles as $role)
-                                                            {{ $role->display_name }}
-                                                        @endforeach
-                                                    @else
-                                                        {{ $user->role }}
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('dashboard.users.edit', $user->id) }}" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
+                                                    <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
                                                         <i class="icon-pencil" style="color: rgb(0, 81, 255);"></i>
                                                     </a>
-                                                    <a href="#" data-toggle="tooltip" data-original-title="Delete" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this user?')) { document.getElementById('delete-form-{{ $user->id }}').submit(); }">
+                                                    <a href="#" data-toggle="tooltip" data-original-title="Delete" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this category?')) { document.getElementById('delete-form-{{ $category->id }}').submit(); }">
                                                         <i class="icon-trash text-danger"></i>
                                                     </a>
-                                                    <form id="delete-form-{{ $user->id }}" action="{{ route('dashboard.users.destroy', $user->id) }}" method="POST" style="display: none;">
+                                                    <form id="delete-form-{{ $category->id }}" action="{{ route('dashboard.categories.destroy', $category->id) }}" method="POST" style="display: none;">
                                                         @csrf
                                                         @method('DELETE')
                                                     </form>
