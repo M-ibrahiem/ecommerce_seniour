@@ -42,9 +42,15 @@
                                             <td>{{ $serial++ }}</td>
                                                 <td>{{ $category->name }}</td>
                                                 <td>{{ $category->sub_title }}</td>
-                                                <td> <img src="" alt=""></td>
                                                 <td>
-                                                    <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
+                                                    <img width="150" height="150" src="{{ asset('uploads/category/' . $category->image) }}" alt="{{ $category->name }}">
+                                                    {{-- <img src="{{ Storage::url('categories/' . $category->image) }}" alt="{{ $category->name }}"> --}}
+                                                    {{-- <img src="{{ asset('storage/categories/' . $category->image) }}" alt="{{ $category->name }}"> --}}
+
+
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('dashboard.categories.edit', $category->id  ) }}" class="mr-25" data-toggle="tooltip" data-original-title="Edit">
                                                         <i class="icon-pencil" style="color: rgb(0, 81, 255);"></i>
                                                     </a>
                                                     <a href="#" data-toggle="tooltip" data-original-title="Delete" onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this category?')) { document.getElementById('delete-form-{{ $category->id }}').submit(); }">
