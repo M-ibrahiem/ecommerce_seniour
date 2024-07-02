@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dash\CategoryController;
 use App\Http\Controllers\Dash\UserController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -36,6 +37,7 @@ Route::group(
             Route::resources([
                 'users' => UserController::class,
                 'categories' => CategoryController::class,
+                'products' => ProductController::class,
             ]);
         });
 
