@@ -135,11 +135,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //  // حذف الصورة المرتبطة إذا كانت موجودة
+          // حذف الصورة  إذا كانت موجودة
          if ($category->image) {
             unlink(public_path('uploads/category/' . $category->image));
             $category->delete();
-        
+
         }
 
         $category->delete();

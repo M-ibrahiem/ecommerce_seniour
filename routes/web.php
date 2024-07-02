@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Dash\CategoryController;
 use App\Http\Controllers\Dash\UserController;
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,12 +27,7 @@ Route::group(
     function ()
     {
 
-        Route::get('/', function () {
-            return view('front.index');
-        })->name('main');
-        // Route::get('/dashboard', function () {
-        //     return view('dash.index');
-        // })->middleware(['auth', 'verified','dashboardAccess'])->name('dashboard');
+        Route::get('/',[HomePageController::class,'index'])->name('main');
 
         Route::middleware(['auth', 'verified', 'dashboardAccess'])->as('dashboard.')->prefix('dashboard')->group(function () {
             Route::get('/', function () {
