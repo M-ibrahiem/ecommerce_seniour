@@ -7,7 +7,6 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
-
 class ProductController extends Controller
 {
     /**
@@ -16,23 +15,23 @@ class ProductController extends Controller
     public function index()
     {
         $data = Product::paginate();
-        return view('dash.products.all',compact('data'));
+        // dd($data);
+        return view('dash.products.all', compact('data'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Product $product)
     {
-        $data = Product::all();
         $categories = Category::all();
-        return view('dash.products.add',compact('data','categories'));
+        return view('dash.products.add', compact('categories','product'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request ,Product $product )
     {
         // Validate the request data
         $request->validate([
@@ -41,7 +40,7 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'description_ar' => 'nullable|string',
             'price' => 'required|numeric',
-            'category_id'=>'nullable',
+            'category_id' => 'required|exists:categories,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -52,23 +51,16 @@ class ProductController extends Controller
             Image::make($request->file('image'))->resize(215, 272, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
-            })->save(public_path('uploads/proudct/' . $imgName));
+            })->save(public_path('uploads/product/' . $imgName));
 
             $request_data['image'] = $imgName;
         }
 
         Product::create($request_data);
+        // dd($request_data);
 
-        // Redirect to a route (e.g., the products index) with a success message
-        return redirect()->route('dashboard.proudcts.index')->with('success', 'Product created successfully!');
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
-    {
-        //
+        return redirect()->route('dashboard.products.index')->with('success', 'Product created successfully!');
     }
 
     /**
@@ -76,11 +68,14 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $categories = Category::all(['id','name']);
 
-        $categories = Category::all();
         return view('dash.products.edit', compact('product', 'categories'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, Product $product)
     {
         $request->validate([
@@ -102,7 +97,7 @@ class ProductController extends Controller
 
             // Delete the old image if exists
             if ($product->image) {
-                unlink(public_path('uploads/products/' . $product->image));
+                unlink(public_path('uploads/product/' . $product->image));
             }
         }
 
@@ -111,12 +106,17 @@ class ProductController extends Controller
         return redirect()->route('dashboard.products.index')->with('success', 'Product updated successfully!');
     }
 
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Product $product)
     {
-        //
+        if ($product->image != 'Default Product.png') {
+            unlink(public_path('uploads/product/' . $product->image));
+        }
+
+        $product->delete();
+
+        return redirect()->route('dashboard.products.index')->with('success', 'Product deleted successfully!');
     }
 }

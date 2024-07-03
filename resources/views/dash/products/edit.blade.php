@@ -17,11 +17,11 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('dashboard.products.update', $product->id) }}" method="POST"  enctype="multipart/form-data">
+                    <form action="{{ route('dashboard.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
-                        <img src="{{ asset('uploads/products/' . $product->image) }}" alt="" id="img-prv" width="250" height="250" alt="image">
+                        <img src="{{ asset('uploads/product/' . $product->image) }}" id="img-prv" width="250" height="250" alt="image">
                         <div class="form-group">
                             <label class="control-label mb-10" for="exampleInputuname_1">Product Name</label>
                             <div class="input-group">
@@ -84,7 +84,10 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label mb-10" for="exampleInputEmail_1">Related Category</label>
-
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="icon-envelope-open"></i></span>
+                                </div>
                                 <select name="category_id" class="form-control" id="exampleInputRelatedCategory_1">
                                     <option value="">Choose</option>
                                     @foreach ($categories as $category)

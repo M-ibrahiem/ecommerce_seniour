@@ -17,10 +17,11 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('dashboard.proudcts.store') }}" method="POST"  enctype="multipart/form-data">
+                    <form action="{{ route('dashboard.products.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
-                        <img src="{{ asset('uploads/proudct/Default Product.png') }}" alt="" id="img-prv" width="250" height="250" alt="image">
+
+                        <img src="{{ asset('uploads/product/Default Product.png') }}" alt="" id="img-prv" width="250" height="250" alt="image">
                         <div class="form-group">
                             <label class="control-label mb-10" for="exampleInputuname_1">Product Name</label>
                             <div class="input-group">
