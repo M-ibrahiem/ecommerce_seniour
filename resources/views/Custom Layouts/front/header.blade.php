@@ -169,7 +169,7 @@
                                 </li>
                                 <li class="onhover-dropdown wislist-dropdown">
                                     <div class="cart-media">
-                                        <a href="cart/list.html">
+                                        <a href="{{route('carts.index')}}">
                                             <i data-feather="shopping-cart"></i>
                                             <span id="cart-count" class="label label-theme rounded-pill">0</span>
                                         </a>
