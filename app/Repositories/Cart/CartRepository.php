@@ -1,13 +1,13 @@
 <?php
-namespace Repositories\Cart;
+namespace App\Repositories\Cart;
 use App\Models\Cart;
 use App\Models\Product;
-use App\Repositorie\Cart\CartRepositorie;
+use App\Repositories\Cart\CartRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
 
-class CartModelRepositorie implements CartRepositorie
+class CartRepository implements CartRepositoryInterface
 {
     // Retrieve all items in the cart
 

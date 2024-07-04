@@ -5,16 +5,18 @@ namespace App\Models;
 use App\Observers\CartObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+// use App\Observers\CartObserver;
 
 class Cart extends Model
 {
     use HasFactory;
 
-    protected $guraded = [];
+    protected $guarded = [];
+
 
     protected static function boot()
     {
-        // parent::boot();
+        parent::boot();
 
         static::observe(CartObserver::class);
     }

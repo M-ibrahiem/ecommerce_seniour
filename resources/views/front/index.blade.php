@@ -197,11 +197,15 @@
                                 </div>
                                 <div class="cart-wrap">
                                     <ul>
-                                        <li>
-                                            <a href="javascript:void(0)" class="addtocart-btn">
-                                                <i data-feather="shopping-cart"></i>
-                                            </a>
-                                        </li>
+                                        <form action="{{ route('carts.store') }}" method="POST">
+                                        @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <li>
+                                                <button href="javascript:void(0)" class="addtocart-btn">
+                                                    <i data-feather="shopping-cart"></i>
+                                                </button>
+                                            </li>
+                                        </form>
                                         <li>
                                             <a href="javascript:void(0)">
                                                 <i data-feather="eye"></i>

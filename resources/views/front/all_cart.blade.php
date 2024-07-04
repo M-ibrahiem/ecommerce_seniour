@@ -86,16 +86,23 @@
                     </thead>
                     <tbody>
 
+                    @foreach ( $items as $item)
+
                         <tr>
                             <td>
                                 <a href="../product/details.html">
-                                    <img src="../assets/images/fashion/product/front/24.jpg" class="blur-up lazyloaded"
+                                    <img src="{{ asset('uploads/product/' .$item->product->image) }}" class="blur-up lazyloaded"
                                         alt="">
                                 </a>
                             </td>
                             <td>
-                                <a href="../product/details.html">A Porro
-                                    Voluptatibus Dolores</a>
+                                @if( LaravelLocalization::getCurrentLocale() == 'ar')
+
+                                <a href="../product/details.html">{{ $item->product->{'name_' . LaravelLocalization::getCurrentLocale()} }}</a>
+                                @else
+                                <a href="../product/details.html">{{ $item->product->{'name_' . LaravelLocalization::getCurrentLocale()} }}</a>
+                                @endif
+                                {{-- <a href="../product/details.html">{{ $item->product->name }}</a> --}}
                                 <div class="mobile-cart-content row">
                                     <div class="col">
                                         <div class="qty-box">
@@ -106,7 +113,7 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <h2>$18</h2>
+                                        <h2>{{ $item->product->price }}</h2>
                                     </div>
                                     <div class="col">
                                         <h2 class="td-color">
@@ -125,12 +132,12 @@
                                     <div class="input-group">
                                         <input type="number" name="quantity"
                                             data-rowid="ba02b0dddb000b25445168300c65386d"
-                                            class="form-control input-number" value="1">
+                                            class="form-control input-number" value="{{ $item->quantity }}">
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <h2 class="td-color">$18.00</h2>
+                                <h2 class="td-color">${{ $item->product->price * $item->quantity }}</h2>
                             </td>
                             <td>
                                 <a href="javascript:void(0)">
@@ -138,59 +145,8 @@
                                 </a>
                             </td>
                         </tr>
+                        @endforeach
 
-                        <tr>
-                            <td>
-                                <a href="../product/details.html">
-                                    <img src="../assets/images/fashion/product/front/7.jpg" class="blur-up lazyloaded"
-                                        alt="">
-                                </a>
-                            </td>
-                            <td>
-                                <a href="../product/details.html">Et
-                                    Voluptatem Repellendus Pariatur</a>
-                                <div class="mobile-cart-content row">
-                                    <div class="col">
-                                        <div class="qty-box">
-                                            <div class="input-group">
-                                                <input type="text" name="quantity" class="form-control input-number"
-                                                    value="1">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <h2>$8</h2>
-                                    </div>
-                                    <div class="col">
-                                        <h2 class="td-color">
-                                            <a href="javascript:void(0)">
-                                                <i class="fas fa-times"></i>
-                                            </a>
-                                        </h2>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <h2>$8</h2>
-                            </td>
-                            <td>
-                                <div class="qty-box">
-                                    <div class="input-group">
-                                        <input type="number" name="quantity"
-                                            data-rowid="8eb747b95b9862e9d83031beb9938720"
-                                            class="form-control input-number" value="1">
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <h2 class="td-color">$8.00</h2>
-                            </td>
-                            <td>
-                                <a href="javascript:void(0)">
-                                    <i class="fas fa-times"></i>
-                                </a>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -240,10 +196,10 @@
                                 <div class="total-details">
                                     <div class="top-details">
                                         <h3>Cart Totals</h3>
-                                        <h6>Sub Total <span>$26.00</span></h6>
-                                        <h6>Tax <span>$5.46</span></h6>
+                                        {{-- <h6>Sub Total <span>$26.00</span></h6>
+                                        <h6>Tax <span>$5.46</span></h6> --}}
 
-                                        <h6>Total <span>$31.46</span></h6>
+                                        <h6>Total <span>{{ $item->total() }}</span></h6>
                                     </div>
                                     <div class="bottom-details">
                                         <a href="checkout">Process Checkout</a>

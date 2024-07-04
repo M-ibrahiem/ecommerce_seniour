@@ -1,5 +1,5 @@
 <?php
-namespace App\Repositorie\Cart;
+namespace App\Repositories\Cart;
 
 use App\Models\Cart;
 use App\Models\Product;
@@ -13,7 +13,7 @@ use App\Models\Product;
 //     public function delete($id);
 // }
 
-interface CartRepositorie
+interface CartRepositoryInterface
 {
     public function get();
     public function add(Product $product , $quantity = 1);
